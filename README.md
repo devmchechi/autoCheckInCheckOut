@@ -23,6 +23,4 @@ from webdriver_manager.chrome import ChromeDriverManager
 ```
 
 ## Author
-Developed by **Dev Chechi**
-[LinkedIn Profile](https://www.linkedin.com/in/devmchechi)
-
+Developed by [**Dev Chechi**](https://www.linkedin.com/in/devmchechi)
