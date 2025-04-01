@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
-user_data_dir = r"{user_path}"
+user_data_dir = r"{user_path}" #Make this your user directory path for Google
 profile_name = "Default"
 
 chrome_options = webdriver.ChromeOptions()
@@ -21,7 +21,7 @@ chrome_options.add_argument("--remote-debugging-port=9222")
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-link = "{workday_user_link}"
+link = "{workday_user_link}" # Make it the check in and check out page of Workday
 
 def pressButton(path):
     try:
@@ -33,8 +33,8 @@ def pressButton(path):
         print("Button not found", e)
 
 
-clockInTime = "22:04"
-clockOutTime = "22:05"
+clockInTime = "{clockIn_time}" # In "%H:%M" format
+clockOutTime = "{clockOut_time}" # In "%H:%M" format
 
 def waitTill(userTime):
     currentTime = datetime.datetime.now().strftime("%H:%M")
