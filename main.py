@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
-user_data_dir = r"[user_path]"
+user_data_dir = r"C:\Users\devch\AppData\Local\Google\Chrome\User Data"
 profile_name = "Default"
 
 chrome_options = webdriver.ChromeOptions()
@@ -21,7 +21,7 @@ chrome_options.add_argument("--remote-debugging-port=9222")
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-link = "[user_workday_checkIn_link]"
+link = "https://www.myworkday.com/northeastern/d/inst/13102!CK5mGhIKBggDEMenAhIICgYI1A0Q8QEavwEKBggDEIGsAhK0ARI6CNtoGgoKBggDEKexARIAGhEKBggDEP6rAhIHCgUI4xkQLxoKCgYIAxD-qwISABoKCgYIAxCArAISABI6CNtoGgoKBggDEKexARIAGhEKBggDEP6rAhIHCgUI4xkQEhoKCgYIAxD-qwISABoKCgYIAxCArAISABI6CNtoEgkKBQgEENB2EgAaEgoGCAMQ-qsCEggKBgjjGRCRAhoKCgYIAxD-qwISABoKCgYIAxCArAISAA~~*CP24MgDrHOE~/cacheable-task/2997$2151.htmld#backheader=true"
 
 def pressButton(path):
     try:
@@ -33,18 +33,18 @@ def pressButton(path):
         print("Button not found", e)
 
 
-clockInTime = "[check_in]" #In 24-Hour Format (%H:%M)
-clockOutTime = "[check_out]" #In 24-Hour Format (%H:%M)
+clockInTime = "22:04"
+clockOutTime = "22:05"
 
-def waitTill(time):
+def waitTill(userTime):
     currentTime = datetime.datetime.now().strftime("%H:%M")
 
-    while (currentTime != time): 
-        print(f"Current time: {currentTime}. Waiting for {time}...")
+    while (currentTime != userTime): 
+        print(f"Current time: {currentTime}. Waiting for {userTime}...")
         time.sleep(10)
         currentTime = datetime.datetime.now().strftime("%H:%M")
+    print(f"Target time {userTime} reached! Proceeding to press the button...")
 
-    print(f"Target time {time} reached! Proceeding to press the button...")
 
 driver.execute_script("window.open('');")
 driver.switch_to.window(driver.window_handles[-1])
