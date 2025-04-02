@@ -47,31 +47,28 @@ def waitTill(userTime):
     driver.switch_to.window(driver.window_handles[-1])
     driver.get(link)
 
+def inOrOut(checkInOrOut: bool):
+    if checkInOrOut:
+        waitTill(clockInTime)
+        pressButton((By.XPATH, "//button[contains(@aria-label, 'Check In')]"))
+        print("Pressed Clock In")
+    else:
+        waitTill(clockOutTime)
+        pressButton((By.XPATH, "//button[contains(@aria-label, 'Check Out')]"))
+        print("Pressed Clock Out")
+
+        pressButton((By.XPATH, "//label[text()='Out']"))
+        print("Pressed Out")
+    
+    pressButton((By.XPATH, "//button[@title='OK']"))
+    print("Pressed Okay")
+
+    pressButton((By.XPATH, "//button[@title='Done']"))
+    print("Pressed Done")
+    
 try:
-    waitTill(clockInTime)
-    
-    pressButton((By.XPATH, "//button[contains(@aria-label, 'Check In')]"))
-    print("Pressed Clock In")
-
-    pressButton((By.XPATH, "//button[@title='OK']"))
-    print("Pressed Okay")
-
-    pressButton((By.XPATH, "//button[@title='Done']"))
-    print("Pressed Done")
-
-    waitTill(clockOutTime)
-    
-    pressButton((By.XPATH, "//button[contains(@aria-label, 'Check Out')]"))
-    print("Pressed Clock Out")
-
-    pressButton((By.XPATH, "//label[text()='Out']"))
-    print("Pressed Out")
-
-    pressButton((By.XPATH, "//button[@title='OK']"))
-    print("Pressed Okay")
-
-    pressButton((By.XPATH, "//button[@title='Done']"))
-    print("Pressed Done")
+    inOrOut(checkInOrOut=True)
+    inOrOut(checkInOrOut=False)
 
 except Exception as e:
     print("Something went wrong", e)
